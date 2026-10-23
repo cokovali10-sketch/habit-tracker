@@ -1,5 +1,8 @@
 """Build habit-tracker EXE with PyInstaller."""
-import subprocess, sys, os, shutil
+import subprocess, sys, os
+# --- константы вынесены FORGE refactor ---
+CONST_1024 = 1024
+
 
 def build():
     print("Building habit-tracker EXE...")
@@ -12,7 +15,7 @@ def build():
     subprocess.run(cmd, check=True)
     os.makedirs("dist", exist_ok=True)
     if os.path.exists("dist/habit-tracker.exe"):
-        size = os.path.getsize("dist/habit-tracker.exe") // (1024*1024)
+        size = os.path.getsize("dist/habit-tracker.exe") // (CONST_1024*CONST_1024)
         print(f"OK: dist/habit-tracker.exe ({size} MB)")
     else:
         print("FAILED")
